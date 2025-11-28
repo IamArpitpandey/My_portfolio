@@ -8,6 +8,8 @@ const navItems = [
   { name: "Skills", href: "#skills" },
   { name: "Projects", href: "#projects" },
   { name: "Contact", href: "#contact" },
+  { name: "Certifications", href: "#certifications" },
+
 ];
 
 export const Navbar = () => {
@@ -16,12 +18,13 @@ export const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.screenY > 10);
+      setIsScrolled(window.scrollY > 10);
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
   return (
     <nav
       className={cn(
@@ -30,18 +33,19 @@ export const Navbar = () => {
       )}
     >
       <div className="container flex items-center justify-between">
+        
+        {/* LOGO */}
         <a
           className="text-xl font-bold text-primary flex items-center"
           href="#hero"
         >
           <span className="relative z-10">
-            <span className="text-glow text-foreground"> PedroTech </span>{" "}
-            Portfolio
+            <span className="text-glow text-foreground"> Arpit </span> Portfolio
           </span>
         </a>
 
-        {/* desktop nav */}
-        <div className="hidden md:flex space-x-8">
+        {/* DESKTOP NAV */}
+        <div className="hidden md:flex items-center space-x-8">
           {navItems.map((item, key) => (
             <a
               key={key}
@@ -51,21 +55,30 @@ export const Navbar = () => {
               {item.name}
             </a>
           ))}
+
+          {/* RESUME BUTTON (optional) */}
+          <a
+            href="\public\projects\Arpit Pandey.pdf"
+            target="_blank"
+            className="px-4 py-2 rounded-lg bg-primary text-background hover:bg-primary/90 transition"
+          >
+            Resume
+          </a>
         </div>
 
-        {/* mobile nav */}
-
+        {/* MOBILE MENU BUTTON */}
         <button
           onClick={() => setIsMenuOpen((prev) => !prev)}
           className="md:hidden p-2 text-foreground z-50"
           aria-label={isMenuOpen ? "Close Menu" : "Open Menu"}
         >
-          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}{" "}
+          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
 
+        {/* MOBILE NAV OVERLAY */}
         <div
           className={cn(
-            "fixed inset-0 bg-background/95 backdroup-blur-md z-40 flex flex-col items-center justify-center",
+            "fixed inset-0 bg-background/95 backdrop-blur-md z-40 flex flex-col items-center justify-center",
             "transition-all duration-300 md:hidden",
             isMenuOpen
               ? "opacity-100 pointer-events-auto"
@@ -83,8 +96,19 @@ export const Navbar = () => {
                 {item.name}
               </a>
             ))}
+
+            {/* Mobile Resume Button */}
+            <a
+              href="YOUR_RESUME_LINK_HERE"
+              target="_blank"
+              className="px-4 py-2 rounded-lg bg-primary text-background hover:bg-primary/90 transition"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Resume
+            </a>
           </div>
         </div>
+
       </div>
     </nav>
   );
