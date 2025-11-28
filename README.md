@@ -86,5 +86,3 @@ Easy CI/CD — auto deploy on every push.
 If you like this project, consider giving it a ⭐ on GitHub!
 
 
-## 📁 Folder Structure
-
